@@ -33,7 +33,6 @@
 , "scripts":
   { "test": "mocha"
   , "start": "node app"
-  , "develop": "bin/develop.sh"
   }
 , "bin":
   { "haackrthon": "node app" }

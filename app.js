@@ -9,10 +9,10 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , Endpoint = require('express-endpoint')
-  , connectStatsd = require('connect-statsd');
+  , connectStatsd = require('connect-statsd')
+  , hostname = require('os').hostname();
 
-var app = express()
-  , api = endpoints.Api();
+var app = express();
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
