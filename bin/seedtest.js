@@ -6,7 +6,7 @@ function start(err, indexer) {
     throw new Error("Failed to create ES Client")
   }
   
-  indexer.index(function(err, data) {
+  indexer.populater(function(err, data) {
     if (err) {
         console.error(err.stack)
     	throw new Error("Failed to index data to ES Client")
@@ -14,4 +14,4 @@ function start(err, indexer) {
   })
 }
 
-new Indexer(start)
+new Indexer(null, start)
