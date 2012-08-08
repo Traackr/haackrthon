@@ -24,6 +24,9 @@
   , "batbelt": "0.0.2"
   , "connect-statsd": "0.0.1"
   , "elasticsearchclient" : "*"
+  , "request" : "2.10.0"
+  , "http-agent" : "0.1.2"
+  , "jsdom" : "0.2.15"
   }
 , "devDependencies":
   { "mocha": "1.3.2"
