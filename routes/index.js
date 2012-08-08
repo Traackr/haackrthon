@@ -4,6 +4,7 @@ var Endpoint = require('express-endpoint')
   , bb = require('batbelt')
   , indexer = new Indexer(null, bb.NOOP)
   , BatchJobs = require('../lib/batchjobs')
+  , customRules = require('../rules')
   , batchJobs = new BatchJobs();
 
 var search = new Endpoint({
@@ -44,6 +45,7 @@ var meetupCrawl = new Endpoint({
       description: 'Meetup to seed for crawl.'
     }
  ],
+ rules: customRules,
  handler: function(req, res) {
    batchJobs.crawlMeetup(req.endpointParmas.url.href, function(err, response) {
      if (err) {
