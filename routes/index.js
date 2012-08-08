@@ -26,6 +26,7 @@ var search = new Endpoint({
  }
 });
 
+exports.search = search
 exports.endpoints = [search]
 
 exports.index = function(req, res) {
