@@ -1,32 +1,29 @@
 var Endpoint = require('express-endpoint')
-  , customRules = require('../rules.js')
+  , customRules = require('../rules')
+  , indexer = require('../lib/indexer');
 
-var myapi = new Endpoint({
-  path: '/1/echo',
-  description: 'Echo input back to caller',
-  example: '/1/echo?apiKey=secretkey&message=hello+world',
+var search = new Endpoint({
+  path: '/1/search',
+  description: 'Search users by skill',
+  example: '/1/search?skill=java',
   parameters: [
     {
-      name: 'apiKey',
-      rules: ['required', 'once', 'apiKey'],
-      description: 'Your api key.'
-    },
-    {
-      name: 'message',
-      rules: ['required', 'once'],
-      description: 'Message to echo back'
+      name: 'skill',
+      rules: ['required'],
+      description: 'Skills to search for.'
     }
  ],
- rules: customRules,
  handler: function(req, res) {
-   res.renderEndpointData(req.endpointParams);
+   indexer.search(req.endpointParams.skill.join(' '), function(err, response) {
+
+   });
  }
 });
 
 exports.endpoints = [myapi]
 
 exports.index = function(req, res) {
-  res.render('index', { title: 'Express' })
+  res.render('index', { title: 'Heystack' })
 }
 
 exports.docs = Endpoint.catalog({endpoints: exports.endpoints})
