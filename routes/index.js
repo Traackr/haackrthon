@@ -47,7 +47,7 @@ var meetupCrawl = new Endpoint({
  ],
  rules: customRules,
  handler: function(req, res) {
-   batchJobs.crawlMeetup(req.endpointParmas.url.href, function(err, response) {
+   batchJobs.crawlMeetup(req.endpointParams.url.href, function(err, response) {
      if (err) {
        throw err;
      } else {
