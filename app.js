@@ -35,6 +35,8 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
+app.get('/docs', routes.docs);
+
 routes.endpoints.forEach(function(endpoint) {
   endpoint.mount(app, ['get', 'post', 'delete', 'put']);
 });

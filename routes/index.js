@@ -25,4 +25,8 @@ var myapi = new Endpoint({
 
 exports.endpoints = [myapi]
 
-exports.index = Endpoint.catalog({endpoints: exports.endpoints})
+exports.index = function(req, res) {
+  res.render('index', { title: 'Express' })
+}
+
+exports.docs = Endpoint.catalog({endpoints: exports.endpoints})
