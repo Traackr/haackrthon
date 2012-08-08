@@ -5,6 +5,8 @@ block content
   p Welcome to #{title}
   label(for="skills") Skillz
   input#skills(name="skills")
-  input.btn.submit(type="submit",value="Search")
+  input.btn.submit(id="searchBtn",type="submit",value="Search")
   br
   a(href="/docs") API Docs
+  br
+  div(id="search_results",class="search_results")

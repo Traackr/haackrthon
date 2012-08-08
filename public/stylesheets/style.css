@@ -6,3 +6,23 @@ body {
 a {
   color: #00B7FF;
 }
+
+.search_results {
+	text-align: center;
+}
+
+.search_results .search_results_grid {
+    border: 0px;
+	width: 600px;
+}
+.search_results .search_results_grid a {
+	color: #141CD6;
+}
+
+.search_results .thumbnail_img {
+	max-width: 100px;
+}
+
+.search_results .user_groups {
+	display: inline;
+}
