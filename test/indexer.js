@@ -13,9 +13,10 @@ describe('indexer', function() {
         interests: ["node.js", "linux"],
         groups: ["Boston Javascript", "Boston Python"]
       }, function(_, data) {
-        indexer.search("node.js", function(err, data) {
-          data.hits.total.should.equal(1);
-          data.hits.hits[0]._id.should.equal('someid');
+        indexer.search("node.js", function(err, users) {
+          users.length.should.equal(1);
+          users[0].id.should.equal('someid');
+          users[0].url.should.equal('http://www.meetup.com/members/someid/');
           done();
         });
       });

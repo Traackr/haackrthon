@@ -3,4 +3,8 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+  label(for="skills") Skillz
+  input#skills(name="skills")
+  input.btn.submit(type="submit",value="Search")
+  br
   a(href="/docs") API Docs
