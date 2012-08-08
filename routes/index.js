@@ -1,6 +1,8 @@
 var Endpoint = require('express-endpoint')
   , customRules = require('../rules')
-  , indexer = require('../lib/indexer');
+  , Indexer = require('../lib/indexer')
+  , bb = require('batbelt')
+  , indexer = new Indexer(null, bb.NOOP);
 
 var search = new Endpoint({
   path: '/1/search',
@@ -15,12 +17,16 @@ var search = new Endpoint({
  ],
  handler: function(req, res) {
    indexer.search(req.endpointParams.skill.join(' '), function(err, response) {
-
+     if (err) {
+       throw new Error('Elastic search phailed hard');
+     } else {
+       res.renderEndpointData(response);
+     }
    });
  }
 });
 
-exports.endpoints = [myapi]
+exports.endpoints = [search]
 
 exports.index = function(req, res) {
   res.render('index', { title: 'Heystack' })
