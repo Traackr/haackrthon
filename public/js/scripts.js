@@ -24,7 +24,7 @@ $(document).ready(function() {
 			    	markup += '<div class="user_groups">';
 			    		markup += '<ul>';
 			    		for (var j=0; j < record.groups.length; j++) {
-			    			markup += '<li><a target="_blank" href="http://meetup.com/' + record.groups[j].group_id + '">' + record.groups[j].group_name + '</a>';
+			    			markup += '<li><a target="_blank" href="' + record.groups[j].group_id + '">' + record.groups[j].group_name + '</a>';
 			    		}
 			    		markup += '</ul>';
 			    	markup += '</div>';
