@@ -21,7 +21,7 @@ var search = new Endpoint({
  handler: function(req, res) {
    indexer.search(req.endpointParams.skill.join(' '), function(err, response) {
      if (err) {
-       throw new Error('Elastic search phailed hard');
+       next(new Error('Elastic search phailed hard'));
      } else {
        res.renderEndpointData(response);
      }
@@ -31,7 +31,7 @@ var search = new Endpoint({
 
 var meetupCrawl = new Endpoint({
   path: '/1/meetup/crawl',
-  description: 'Crawn meetup.com with a seed meetup group URL',
+  description: 'Crawl meetup.com with a seed meetup group URL',
   example: '/1/meetup/crawl?url=http://meetup.bostonpython.com/&apiKey=shhhh',
   parameters: [
     {
@@ -49,7 +49,30 @@ var meetupCrawl = new Endpoint({
  handler: function(req, res) {
    batchJobs.crawlMeetup(req.endpointParams.url.href, function(err, response) {
      if (err) {
-       throw err;
+       next(err);
+     } else {
+       res.renderEndpointData(response);
+     }
+   });
+ }
+});
+
+var augmentUsers = new Endpoint({
+  path: '/1/users/update',
+  description: 'Crawl meetup.com for user data of all known users',
+  example: '/1/meetup/crawl?apiKey=shhhh',
+  parameters: [
+    {
+      name: 'apiKey',
+      rules: ['required', 'apiKey', 'once'],
+      description: 'Admin api key'
+    }
+ ],
+ rules: customRules,
+ handler: function(req, res) {
+   batchJobs.augmentUsers(function(err, response) {
+     if (err) {
+       next(err);
      } else {
        res.renderEndpointData(response);
      }
