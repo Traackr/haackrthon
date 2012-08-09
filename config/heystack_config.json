@@ -1,0 +1,46 @@
+{
+  "settings" : {
+    "index": {
+      "number_of_shards" : 5,
+      "number_of_replicas" : 0,
+      "analysis":{
+        "analyzer":{
+          "custom_text":{
+            "type":"custom",
+            "char_filter":"html_strip",
+            "tokenizer":"whitespace",
+            "filter":["custom_text_word_delimiter", "asciifolding", "lowercase", "stop"]
+          }
+        },
+        "filter":{
+          "custom_text_word_delimiter":{
+            "type":"word_delimiter",
+            "generate_word_parts":"1",
+            "generate_number_parts":"1",
+            "catenate_words":"1",
+            "catenate_numbers":"1",
+            "catenate_all":"0",
+            "split_on_case_change":"1",
+            "preserve_original":"1"
+          }
+        }
+      }
+    }
+  },
+  "mappings" : {
+    "user" : {
+      "properties" : {
+        "name" : {"type" : "string", "analyzer": "custom_text"},
+        "interests" : {"type" : "string", "analyzer": "custom_text"},
+        "thumbnail_url" : {"type" : "string", "index": "not_analyzed"},
+        "groups" : {
+        	"dynamic" : "true",
+        	"properties" : {
+        		"group_id": {"type" : "string", "index": "not_analyzed"},
+        		"group_name": {"type" : "string", "analyzer": "custom_text"}
+        	}
+        }
+      }
+    }
+  }
+}
